@@ -42,9 +42,11 @@
       >
       Cancelar
     </button>
-    <button class='btn'  mat-mini-fab color="primary"  (click)='getContacts()'><i class='material-icons'>
-      refresh
-    </i></button>
+    <button class='btn'  mat-mini-fab color="primary" (click)='getContacts()'>
+      <i matTooltip="Atualizar lista" class='material-icons'>
+        refresh
+      </i>
+    </button>
     </div>
   </form>
   <table mat-table [dataSource]="contacts" matSort class="mat-elevation-z2 mat">

@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
     })
   }
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {duration: 2000});
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -85,8 +85,7 @@ export class MainComponent implements OnInit {
     };
     if(data.name == '' && data.email == '' && data.phone == '' ){
       this.openDialog("Após preencher algum campo, clique em editar no contato que deseja modificar")
-    } else {
-
+    } else{
       this.contactService.update(id, data)
       .subscribe(
         (response: any) => {
@@ -95,8 +94,9 @@ export class MainComponent implements OnInit {
 
           if(response.codeName == "DuplicateKey") {
             this.openDialog(`O campo ${Object.keys(response.keyPattern)} já está em uso`)
+          } else {
+            this.openSnackBar('Contato editado com sucesso', 'Ok!')
           }
-          this.openSnackBar('Contato editado com sucesso', 'Ok!')
         },
         (error: any) => {
           console.log(error);
