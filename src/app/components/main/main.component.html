@@ -1,0 +1,80 @@
+<div class="container">
+  <form>
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        [(ngModel)]="contact.email"
+        name='email'
+        placeholder="pat@example.com"
+        required
+      />
+      <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        [(ngModel)]="contact.name"
+        name='name'
+        placeholder="Jon Doe"
+        required
+      />
+      <mat-error *ngIf="name.invalid">{{ getNameErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Telefone</mat-label>
+      <input
+        matInput
+        [(ngModel)]="contact.phone"
+        placeholder="00000-0000"
+        name='phone'
+        required
+      />
+      <mat-error *ngIf="phone.invalid">{{ getPhoneErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <div>
+      <button type="submit" class='btn' mat-raised-button color="primary"  (click)='saveContact()'>Salvar</button>
+      <button
+      type="reset"
+      class='btn'
+      mat-raised-button color="warn"
+      >
+      Cancelar
+    </button>
+    <button class='btn'  mat-mini-fab color="primary"  (click)='getContacts()'><i class='material-icons'>
+      refresh
+    </i></button>
+    </div>
+  </form>
+  <table mat-table [dataSource]="contacts" matSort class="mat-elevation-z2 mat">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nome </th>
+      <td mat-cell *matCellDef="let contacts"> {{contacts.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let contacts"> {{contacts.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Telefone </th>
+      <td mat-cell *matCellDef="let contacts"> {{contacts.phone}} </td>
+    </ng-container>
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let contacts">
+        <div class="btn-container">
+          <button type="button" class='btn' mat-raised-button color="primary" (click)="updateContact(contacts._id)">Editar</button>
+          <button type="button" mat-raised-button color="warn" (click)="delete(contacts._id)">Deletar</button>
+        </div>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

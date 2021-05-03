@@ -1,0 +1,13 @@
+header{
+  display: flex;
+  font-size: 18px;
+  .logo {
+    max-height: 32px;
+  }
+  .title{
+    padding-top: 25px;
+    i{
+      padding-right: 5px;
+    }
+  }
+}
