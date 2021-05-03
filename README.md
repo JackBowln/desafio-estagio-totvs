@@ -1,5 +1,7 @@
 # DesafioTotvs
 
+Para acessar a api do projeto utilize [esse repositório](https://github.com/JackBowln/api-desafio-totvs)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10.
 
 ## Development server
